@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { calculateScrollProgress } from "./calculate-scroll-progress";
 
 export default function ScrollProgressBar() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -14,11 +15,9 @@ export default function ScrollProgressBar() {
       }
 
       animationFrame = requestAnimationFrame(() => {
-        const { scrollTop, scrollHeight, clientHeight } =document.documentElement;
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-        const maxScrollTop = scrollHeight - clientHeight;
-
-        setScrollProgress(Math.min(100, Math.max(0, (scrollTop / maxScrollTop) * 100)));
+        setScrollProgress(calculateScrollProgress(scrollTop, scrollHeight, clientHeight));
 
         animationFrame = 0;
       });
