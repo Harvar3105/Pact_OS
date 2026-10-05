@@ -37,11 +37,13 @@ export default function ScrollProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 z-50 h-0.5 w-full">
-      <div
-        className="h-full origin-left bg-[#050505] transition-transform duration-100 ease-out dark:bg-[#F5F5F5]"
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
-      />
+    <div id="scroll-progress-bar" className="fixed pointer-events-none top-0 left-0 z-50 h-0.5 w-full aria-hidden='true'">
+      <div className="h-full bg-[#F5F5F5] dark:bg-[#050505]">
+        <div
+          className="h-full origin-left bg-[#050505] transition-transform duration-100 ease-out dark:bg-[#F5F5F5]"
+          style={{ transform: `scaleX(${scrollProgress / 100})` }}
+        />
+      </div>
     </div>
   );
 }
